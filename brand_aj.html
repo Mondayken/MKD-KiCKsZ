@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Air Jordan - MKD K!CKsZ</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="header"><div class="logo">MKD K!CKsZ</div><nav><a href="index.html">Home</a> | <a href="cart.html">Cart (<span id="cart-count">0</span>)</a></nav></header>
+<main class="container"><h2>Air Jordan Collection</h2><div id="products" class="grid"></div></main>
+<script src="app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async ()=>{
+  const list = await fetch('products.json').then(r=>r.json());
+  const aj = list.filter(p=>p.category.toLowerCase().includes('jordan'));
+  const c = document.getElementById('products');
+  c.innerHTML='';
+  aj.forEach(p=>{
+    const div = document.createElement('div'); div.className='card';
+    const img = p.image && p.image.trim()? p.image : `images/airjordan/${p.sku.toLowerCase()}.png`;
+    div.innerHTML = `<img src="${img}"><div class="title-small">SKU: ${p.sku} • PK: ${p.id}</div><h3>${p.name}</h3><div class="price">${p.display_price || 'R '+(p.price).toFixed(2)}</div>
+      <div class="controls"><select class="size" id="size-${p.id}">${Array.from({length:14},(_,i)=>36+i).map(s=>`<option value="${s}">${s}</option>`).join('')}</select>
+      <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to cart</button></div>`;
+    c.appendChild(div);
+  });
+});
+</script>
+</body>
+</html>

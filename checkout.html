@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checkout - MKD K!CKsZ</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="header"><div class="logo">MKD K!CKsZ</div></header>
+<main class="container">
+  <h2>Checkout</h2>
+  <div style="display:grid;grid-template-columns:1fr 420px;gap:18px">
+    <div>
+      <form id="checkout-form">
+        <div><input name="fullname" placeholder="Full name" required style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
+        <div><input name="email" type="email" placeholder="Email" required style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
+        <div><input name="address" placeholder="Address" required style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
+        <div style="display:flex;gap:8px"><input name="city" placeholder="City" style="flex:1;padding:10px;border-radius:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"><input name="postal" placeholder="Postal code" style="width:120px;padding:10px;border-radius:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
+        <div style="margin-top:8px" id="order-result"></div>
+      </form>
+    </div>
+    <div id="order-summary" class="checkout-panel"></div>
+  </div>
+  <div id="paypal-button-container" style="margin-top:14px"></div>
+</main>
+
+<!-- PayPal SDK: client-id provided earlier -->
+<script src="https://www.paypal.com/sdk/js?client-id=Abx8JdunQM6Fn0bQ7OqaM5ijZn3v6p8A4BbyIe1Zi4oOZAD0dgdfoVN6pv6EKl7wYWsPRodEJJoM7fUA&currency=ZAR"></script>
+<script src="app.js"></script>
+<script>
+// Render PayPal button and call our submitOrderToServer (uses app.js's function)
+paypal.Buttons({
+  createOrder: function(data, actions) {
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+    const products = window.__products || [];
+    const items = Object.entries(cart).map(([id_qty, qty]) => {
+      const [id,size] = id_qty.split('|');
+      const p = products.find(x=>x.id==id);
+      return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: p.price, size } : null;
+    }).filter(Boolean);
+    const subtotal = items.reduce((s,i)=>s + i.price * i.qty, 0);
+    return actions.order.create({
+      purchase_units: [{ amount: { value: subtotal.toFixed(2), currency_code: 'ZAR' } }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      const cartObj = JSON.parse(localStorage.getItem('cart') || '{}');
+      const products = window.__products || [];
+      const items = Object.entries(cartObj).map(([id_qty, qty]) => {
+        const [id,size] = id_qty.split('|');
+        const p = products.find(x=>x.id==id);
+        return p ? { sku:p.sku, pk:p.id, name:p.name, qty, price:p.price, size } : null;
+      }).filter(Boolean);
+      const order = { id:'PP-'+(details.id||Date.now()), paypal:details, items, total: items.reduce((s,i)=>s+i.price*i.qty,0), createdAt:new Date().toISOString() };
+      const customer = {
+        fullname: document.querySelector('[name="fullname"]').value,
+        email: document.querySelector('[name="email"]').value,
+        address: document.querySelector('[name="address"]').value,
+        city: document.querySelector('[name="city"]').value,
+        postal: document.querySelector('[name="postal"]').value
+      };
+      document.getElementById('order-result').innerHTML = '<div class="order-success"><h3>Payment completed</h3><div>Transaction ID: '+details.id+'</div></div>';
+      // clear cart
+      localStorage.removeItem('cart');
+      window.__cart = {};
+      updateCartCount();
+      // post to serverless orders (if configured)
+      submitOrderToServer({ order, customer, items }).then(res=>{ console.log('order saved',res); }).catch(e=>{ console.warn('order not saved to serverless', e); });
+    });
+  },
+  onError: function(err) {
+    document.getElementById('order-result').innerHTML = '<div class="card"><div class="small">Payment error: '+err+'</div></div>';
+  }
+}).render('#paypal-button-container');
+</script>
+</body>
+</html>
