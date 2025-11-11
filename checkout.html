@@ -18,6 +18,7 @@
     <div id="order-summary" class="checkout-panel"></div>
   </div>
   <div id="paypal-button-container" style="margin-top:14px"></div>
+  <div id="payfast-button-container" style="margin-top:14px"></div>
 </main>
 
 <!-- PayPal SDK: client-id provided earlier -->
@@ -69,6 +70,42 @@ paypal.Buttons({
     document.getElementById('order-result').innerHTML = '<div class="card"><div class="small">Payment error: '+err+'</div></div>';
   }
 }).render('#paypal-button-container');
+
+
+
+// Payfast integration (placeholder, as Payfast typically uses redirect)
+document.getElementById('payfast-button-container').innerHTML = '<button class="btn btn-primary" onclick="payWithPayfast()">Pay with Payfast</button>';
+
+function payWithPayfast() {
+  const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+  const products = window.__products || [];
+  const items = Object.entries(cart).map(([id_qty, qty]) => {
+    const [id, size] = id_qty.split('|');
+    const p = products.find(x => x.id == id);
+    return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: p.price, size } : null;
+  }).filter(Boolean);
+  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+
+  const merchantId = '21821367';
+  const merchantKey = 'e1zoza9igff2q';
+  const returnUrl = window.location.origin + '/checkout.html?status=success';
+  const cancelUrl = window.location.origin + '/checkout.html?status=cancel';
+  const notifyUrl = window.location.origin + '/.netlify/functions/orders'; // For IPN if needed
+
+  const payfastUrl = 'https://www.payfast.co.za/eng/process?' +
+    'merchant_id=' + encodeURIComponent(merchantId) +
+    '&merchant_key=' + encodeURIComponent(merchantKey) +
+    '&return_url=' + encodeURIComponent(returnUrl) +
+    '&cancel_url=' + encodeURIComponent(cancelUrl) +
+    '&notify_url=' + encodeURIComponent(notifyUrl) +
+    '&amount=' + encodeURIComponent(total.toFixed(2)) +
+    '&item_name=' + encodeURIComponent('MKD K!CKsZ Order') +
+    '&email_address=' + encodeURIComponent(document.querySelector('[name="email"]').value) +
+    '&name_first=' + encodeURIComponent(document.querySelector('[name="fullname"]').value.split(' ')[0]) +
+    '&name_last=' + encodeURIComponent(document.querySelector('[name="fullname"]').value.split(' ').slice(1).join(' '));
+
+  window.location.href = payfastUrl;
+}
 </script>
 </body>
 </html>

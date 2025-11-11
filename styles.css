@@ -150,6 +150,18 @@ select.size {
   padding: 8px 12px;
 }
 
+.btn-secondary {
+  background: var(--dark-grey);
+  color: #eee;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-danger {
+  background: var(--accent-red);
+  color: #fff;
+  border: none;
+}
+
 .small {
   font-size: 13px;
   color: var(--muted);
