@@ -602,14 +602,39 @@ function sanitizeCartOnLoad() {
     }
     const cleaned = {};
     let removed = false;
+    const products = window.__products || [];
+    const validIds = new Set(products.map(p => String(p.id)));
     for (const [k, v] of Object.entries(parsed)) {
-      // only accept keys like "<numericId>|<size>" and positive numeric qty
-      if (/^\d+\|[^\n\r]+$/.test(k) && Number.isFinite(Number(v)) && Number(v) > 0) {
-        cleaned[k] = Number(v);
-      } else {
+      // Expect keys like "<numericId>|<size>". Validate id exists and size is a
+      // sensible token (numeric like 13 or 13.5, or short alpha like M/L/XL).
+      const parts = String(k).split('|');
+      if (parts.length !== 2) {
         removed = true;
-        console.warn('sanitizeCartOnLoad: removing invalid cart key', k);
+        console.warn('sanitizeCartOnLoad: invalid key format, removing', k);
+        continue;
       }
+      const [idPart, sizePart] = parts;
+      if (!/^[0-9]+$/.test(idPart) || !validIds.has(idPart)) {
+        removed = true;
+        console.warn('sanitizeCartOnLoad: unknown product id, removing', k);
+        continue;
+      }
+      const size = String(sizePart).trim();
+      const isNumericSize = /^\d+(?:\.\d+)?$/.test(size); // e.g. 13 or 13.5
+      const isAlphaSize = /^[A-Za-z]{1,3}$/.test(size); // e.g. S, M, L, XL
+      if (!isNumericSize && !isAlphaSize) {
+        removed = true;
+        console.warn('sanitizeCartOnLoad: invalid size token, removing', k);
+        continue;
+      }
+      // qty must be a positive number
+      const qty = Number(parsed[k]);
+      if (!Number.isFinite(qty) || qty <= 0) {
+        removed = true;
+        console.warn('sanitizeCartOnLoad: invalid qty, removing', k);
+        continue;
+      }
+      cleaned[`${idPart}|${size}`] = Number(qty);
     }
     if (removed) localStorage.setItem('cart', JSON.stringify(cleaned));
   } catch (e) {
