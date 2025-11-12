@@ -28,9 +28,7 @@ function updateCartBadge() {
 }
 
 // --- Add to Cart function ---
-function addToCart(id) {
-  const sizeSelect = document.getElementById('size-' + id);
-  const size = sizeSelect ? sizeSelect.value : '';
+function addToCart(id, size) {
   const cartKey = `${id}|${size}`;
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
   cart[cartKey] = (cart[cartKey] || 0) + 1;
