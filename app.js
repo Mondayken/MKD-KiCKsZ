@@ -1,5 +1,6 @@
 // --- Load product data globally ---
-const products = [
+// embedded fallback products (will be overridden by products.json if available)
+let products = [
   {
     "id": 1,
     "sku": "FC001",
@@ -563,7 +564,24 @@ const products = [
   }
 ];
 
+// Small helper to format prices consistently
+function formatPrice(v) {
+  const n = Number(v) || 0;
+  return 'R ' + n.toFixed(2);
+}
+
 window.__products = products;
+
+// Try to load fresh product data from products.json (so maintainers can edit prices there)
+fetch('products.json').then(r => r.json()).then(data => {
+  if (Array.isArray(data) && data.length) {
+    products = data;
+    window.__products = products;
+    // re-render cart and badge in case prices changed
+    updateCartBadge();
+    if (document.getElementById('cart-items')) renderCart();
+  }
+}).catch(() => { /* ignore fetch errors and keep embedded products */ });
 
 // Auto-render cart if cart container exists (more robust than pathname check)
 if (document.getElementById("cart-items")) {
@@ -715,7 +733,8 @@ function renderCart() {
     const [id, size] = cartKey.split('|');
     const p = products.find(x => x.id == id);
     if (!p) continue;
-    const subtotal = p.price * qty;
+    const priceNum = Number(p.price) || 0;
+    const subtotal = priceNum * qty;
     total += subtotal;
 
     cartContainer.innerHTML += `
@@ -724,8 +743,8 @@ function renderCart() {
         <div style="flex:1;">
           <strong>${p.name}</strong><br>
           <span>Size: ${size}</span><br>
-          <span>Price: R ${p.price}</span><br>
-          <span>Subtotal: R ${subtotal}</span>
+          <span>Price: ${formatPrice(priceNum)}</span><br>
+          <span>Subtotal: ${formatPrice(subtotal)}</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
           <button onclick="updateQuantity('${cartKey}', -1)" class="btn btn-secondary">-</button>
@@ -740,7 +759,7 @@ function renderCart() {
   summaryContainer.innerHTML = `
     <div class="card" style="padding:16px">
       <h3>Cart Summary</h3>
-      <p>Total: <strong>R ${total.toFixed(2)}</strong></p>
+      <p>Total: <strong>${formatPrice(total)}</strong></p>
       <button class="btn btn-primary" onclick="window.location.href='checkout.html'">Checkout</button>
       <button class="btn btn-danger" onclick="clearCart()" style="margin-top:10px;">Clear Cart</button>
     </div>

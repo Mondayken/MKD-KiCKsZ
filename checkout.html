@@ -5,7 +5,7 @@
 <header class="header"><div class="logo">MKD K!CKsZ</div></header>
 <main class="container">
   <h2>Checkout</h2>
-  <div style="display:grid;grid-template-columns:1fr 420px;gap:18px">
+  <div class="two-column two-column-checkout">
     <div>
       <form id="checkout-form">
         <div><input name="fullname" placeholder="Full name" required style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
@@ -33,9 +33,9 @@ paypal.Buttons({
     const items = Object.entries(cart).map(([cartKey, qty]) => {
       const [id,size] = cartKey.split('|');
       const p = products.find(x=>x.id==id);
-      return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: p.price, size } : null;
+      return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: Number(p.price) || 0, size } : null;
     }).filter(Boolean);
-    const subtotal = items.reduce((s,i)=>s + i.price * i.qty, 0);
+    const subtotal = items.reduce((s,i)=>s + (Number(i.price) || 0) * i.qty, 0);
     return actions.order.create({
       purchase_units: [{ amount: { value: subtotal.toFixed(2), currency_code: 'ZAR' } }]
     });
@@ -47,9 +47,9 @@ paypal.Buttons({
       const items = Object.entries(cartObj).map(([cartKey, qty]) => {
         const [id,size] = cartKey.split('|');
         const p = products.find(x=>x.id==id);
-        return p ? { sku:p.sku, pk:p.id, name:p.name, qty, price:p.price, size } : null;
+        return p ? { sku:p.sku, pk:p.id, name:p.name, qty, price: Number(p.price) || 0, size } : null;
       }).filter(Boolean);
-      const order = { id:'PP-'+(details.id||Date.now()), paypal:details, items, total: items.reduce((s,i)=>s+i.price*i.qty,0), createdAt:new Date().toISOString() };
+      const order = { id:'PP-'+(details.id||Date.now()), paypal:details, items, total: items.reduce((s,i)=>s + (Number(i.price)||0)*i.qty,0), createdAt:new Date().toISOString() };
       const customer = {
         fullname: document.querySelector('[name="fullname"]').value,
         email: document.querySelector('[name="email"]').value,
@@ -82,9 +82,9 @@ function payWithPayfast() {
   const items = Object.entries(cart).map(([cartKey, qty]) => {
     const [id, size] = cartKey.split('|');
     const p = products.find(x => x.id == id);
-    return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: p.price, size } : null;
+    return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: Number(p.price) || 0, size } : null;
   }).filter(Boolean);
-  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+  const total = items.reduce((s, i) => s + (Number(i.price) || 0) * i.qty, 0);
 
   const merchantId = '21821367';
   const merchantKey = 'e1zoza9igff2q';

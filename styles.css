@@ -211,6 +211,17 @@ select.size {
   border-radius: 10px;
 }
 
+/* Reusable two-column layout for cart/checkout pages */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 18px;
+}
+
+.two-column.two-column-checkout {
+  grid-template-columns: 1fr 420px;
+}
+
 .footer {
   padding: 28px;
   text-align: center;
@@ -457,4 +468,32 @@ nav a {
   .container {
     padding: 0 12px;
   }
+
+  /* Stack cart/checkout columns on small screens */
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make sticky checkout panel behave on small screens */
+  .checkout-panel {
+    position: static;
+    top: auto;
+    margin-top: 8px;
+  }
 }
+
+/* Contact button icon styling */
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.contact-btn .icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.contact-btn .label { display: inline-block; }
