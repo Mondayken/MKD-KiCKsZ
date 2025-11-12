@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cart - MKD K!CKsZ</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="header"><div class="logo">MKD K!CKsZ</div>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+  <nav><a href="index.html">Home</a> | <a href="contact.html">Contact</a></nav>
+</header>
+<main class="container">
+  <h2>Your Cart</h2>
+  <div class="two-column">
+    <div id="cart-items"></div>
+    <div id="cart-summary" class="checkout-panel"></div>
+  </div>
+  <!-- 'Go to Checkout' removed; checkout button is available in the cart summary on the right -->
+</main>
+<!-- Inline sanitiser: runs before any cached app.js to remove malformed or injected cart keys -->
+<script>
+  (function(){
+    try {
+      const raw = localStorage.getItem('cart');
+      if (!raw) return;
+      try {
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object') { localStorage.removeItem('cart'); return; }
+        let changed = false;
+        for (const k of Object.keys(parsed)) {
+          // remove keys that look like leftover script/comment text
+          if (/Size picker|Transform existing|Size picker enhancement|\/\/ ---|try \{/.test(k) ) {
+            delete parsed[k]; changed = true;
+          }
+        }
+        if (changed) localStorage.setItem('cart', JSON.stringify(parsed));
+      } catch (e) { localStorage.removeItem('cart'); }
+    } catch (e) { /* ignore */ }
+  })();
+</script>
+<script src="app.js?v=3e280e3"></script>
+</body>
+</html>

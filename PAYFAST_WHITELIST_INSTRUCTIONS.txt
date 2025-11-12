@@ -1,0 +1,45 @@
+Payfast IP Whitelist / Account checklist
+
+1) Why this is needed
+- Payfast will send server-to-server IPN (notify_url) POST requests to your server when a payment changes state. If your firewall blocks Payfast IPs these notifications will fail and your store won't receive payment confirmations.
+
+2) Get the current Payfast IP list
+- Log into your Payfast dashboard and copy the "View IP Range" list they provide.
+- Payfast may update this list; re-check periodically or subscribe to Payfast developer notices.
+
+3) Example allowlist entries (copy/paste to your admin or send to your IT team)
+
+- Windows Firewall (PowerShell - run as admin):
+  # allow a single IP
+  New-NetFirewallRule -DisplayName "Allow Payfast 197.x.x.x" -Direction Inbound -Action Allow -RemoteAddress 197.0.0.0/24 -Protocol TCP -LocalPort 80,443
+
+- Linux iptables (example for single IP or CIDR):
+  # allow single IP
+  sudo iptables -I INPUT -p tcp -s 197.0.0.123 --dport 443 -j ACCEPT
+  # allow CIDR
+  sudo iptables -I INPUT -p tcp -s 197.0.0.0/24 --dport 443 -j ACCEPT
+
+- AWS Security Group (console or CLI example):
+  # via aws cli (replace sg-xxxxx and CIDR)
+  aws ec2 authorize-security-group-ingress --group-id sg-0123456789abcdef0 --protocol tcp --port 443 --cidr 197.0.0.0/24
+
+- Cloudflare (if using):
+  # Add IP Access Rule in Cloudflare dashboard -> Security -> WAF -> Tools -> IP Access Rules
+  # choose Action=Allow, enter the IP or CIDR and your domain.
+
+4) Confirming Payfast IPN delivery
+- Once whitelisted, do a test transaction (use sandbox if preferred).
+- Check your server logs or the Netlify function logs (if using Netlify functions) for incoming requests from Payfast IPs. In Netlify, check Function Logs in the Netlify dashboard.
+- For our setup: the notify_url is likely: https://<your-site>/checkout.html or https://<your-site>/.netlify/functions/orders — ensure whichever URL you set is reachable.
+
+5) Account pending verification
+- Payfast will block live payments until your account is verified. Log into Payfast dashboard and complete any requested KYC or bank verification steps.
+- If the dashboard shows 'pending verification' contact Payfast support and include Merchant ID.
+
+6) Notes
+- Do NOT share your merchant_key publicly. Keep it in environment variables.
+- After whitelisting, re-run a test payment. If you still see errors, collect the IP address from your server logs and send it to Payfast support so they can verify their requests are reaching you.
+
+If you want, I can:
+- Switch the checkout page to Payfast sandbox (I can implement the sandbox toggle) so you can test without real payments.
+- Add extra logging to the orders function (already done) so you can see incoming IPs in Netlify function logs.
