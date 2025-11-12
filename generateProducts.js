@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_PATH = './images';
-const DEFAULT_PRICE = 1000.0;
+const DEFAULT_PRICE = 1.0;
 const OUTPUT_FILE = './products.json';
 
 // Utility: builds product objects from image files
@@ -21,9 +21,9 @@ function getFilesRecursive(dir, category) {
         id: Date.now() + index,
         sku: name,
         name: formattedName.trim(),
-        price: DEFAULT_PRICE,
+  price: DEFAULT_PRICE,
         currency: 'ZAR',
-        display_price: 'R 1000.00',
+  display_price: 'R 1.00',
         category,
         image: `${dir.replace('./', '')}/${file}`,
         description: ''

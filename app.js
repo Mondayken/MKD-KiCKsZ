@@ -5,9 +5,9 @@ let products = [
     "id": 1,
     "sku": "FC001",
     "name": "AF1",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/AF1.jpeg",
     "description": ""
@@ -16,9 +16,9 @@ let products = [
     "id": 2,
     "sku": "FC002",
     "name": "TN 01",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-01.jpeg",
     "description": ""
@@ -27,9 +27,9 @@ let products = [
     "id": 3,
     "sku": "FC003",
     "name": "TN 02",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-02.jpeg",
     "description": ""
@@ -38,9 +38,9 @@ let products = [
     "id": 4,
     "sku": "FC004",
     "name": "TN 03",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-03.jpeg",
     "description": ""
@@ -49,9 +49,9 @@ let products = [
     "id": 5,
     "sku": "FC005",
     "name": "TN 04",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-04.jpeg",
     "description": ""
@@ -60,9 +60,9 @@ let products = [
     "id": 6,
     "sku": "FC006",
     "name": "TN 05",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-05.jpeg",
     "description": ""
@@ -71,9 +71,9 @@ let products = [
     "id": 7,
     "sku": "FC007",
     "name": "TN 06",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-06.jpeg",
     "description": ""
@@ -82,9 +82,9 @@ let products = [
     "id": 8,
     "sku": "FC008",
     "name": "TN 07",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-07.jpeg",
     "description": ""
@@ -93,9 +93,9 @@ let products = [
     "id": 9,
     "sku": "FC009",
     "name": "TN 08",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-08.jpeg",
     "description": ""
@@ -104,9 +104,9 @@ let products = [
     "id": 10,
     "sku": "FC010",
     "name": "TN 09",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-09.jpeg",
     "description": ""
@@ -115,9 +115,9 @@ let products = [
     "id": 11,
     "sku": "FC011",
     "name": "TN 10",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-10.jpeg",
     "description": ""
@@ -126,9 +126,9 @@ let products = [
     "id": 12,
     "sku": "FC012",
     "name": "TN 11",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-11.jpeg",
     "description": ""
@@ -137,9 +137,9 @@ let products = [
     "id": 13,
     "sku": "FC013",
     "name": "TN 12",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-12.jpeg",
     "description": ""
@@ -148,9 +148,9 @@ let products = [
     "id": 14,
     "sku": "FC014",
     "name": "TN 14",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-14.jpeg",
     "description": ""
@@ -159,9 +159,9 @@ let products = [
     "id": 15,
     "sku": "FC015",
     "name": "TN 15",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-15.jpeg",
     "description": ""
@@ -170,9 +170,9 @@ let products = [
     "id": 16,
     "sku": "FC016",
     "name": "TN 16",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-16.jpeg",
     "description": ""
@@ -181,9 +181,9 @@ let products = [
     "id": 17,
     "sku": "FC017",
     "name": "TN 17",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-17.jpeg",
     "description": ""
@@ -192,9 +192,9 @@ let products = [
     "id": 18,
     "sku": "FC018",
     "name": "TN 18",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-18.jpeg",
     "description": ""
@@ -203,9 +203,9 @@ let products = [
     "id": 19,
     "sku": "FC019",
     "name": "TN 19",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-19.jpeg",
     "description": ""
@@ -214,9 +214,9 @@ let products = [
     "id": 20,
     "sku": "FC020",
     "name": "TN A01",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-A01.jpeg",
     "description": ""
@@ -225,9 +225,9 @@ let products = [
     "id": 21,
     "sku": "FC021",
     "name": "TN A02",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-A02.jpeg",
     "description": ""
@@ -236,9 +236,9 @@ let products = [
     "id": 22,
     "sku": "FC022",
     "name": "TN A03",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Nike",
     "image": "images/nike/TN-A03.jpeg",
     "description": ""
@@ -247,9 +247,9 @@ let products = [
     "id": 23,
     "sku": "MD023",
     "name": "AJ4 1",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-1.png",
     "description": ""
@@ -258,9 +258,9 @@ let products = [
     "id": 24,
     "sku": "MD024",
     "name": "AJ4 10",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-10.png",
     "description": ""
@@ -269,9 +269,9 @@ let products = [
     "id": 25,
     "sku": "MD025",
     "name": "AJ4 11",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-11.png",
     "description": ""
@@ -280,9 +280,9 @@ let products = [
     "id": 26,
     "sku": "MD026",
     "name": "AJ4 12",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-12.png",
     "description": ""
@@ -291,9 +291,9 @@ let products = [
     "id": 27,
     "sku": "MD027",
     "name": "AJ4 14",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-14.png",
     "description": ""
@@ -302,9 +302,9 @@ let products = [
     "id": 28,
     "sku": "MD028",
     "name": "AJ4 15",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-15.png",
     "description": ""
@@ -313,9 +313,9 @@ let products = [
     "id": 29,
     "sku": "MD029",
     "name": "AJ4 17",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-17.png",
     "description": ""
@@ -324,9 +324,9 @@ let products = [
     "id": 30,
     "sku": "MD030",
     "name": "AJ4 18",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-18.png",
     "description": ""
@@ -335,9 +335,9 @@ let products = [
     "id": 31,
     "sku": "MD031",
     "name": "AJ4 2",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-2.png",
     "description": ""
@@ -346,9 +346,9 @@ let products = [
     "id": 32,
     "sku": "MD032",
     "name": "AJ4 21",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-21.png",
     "description": ""
@@ -357,9 +357,9 @@ let products = [
     "id": 33,
     "sku": "MD033",
     "name": "AJ4 23",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-23.png",
     "description": ""
@@ -368,9 +368,9 @@ let products = [
     "id": 34,
     "sku": "MD034",
     "name": "AJ4 24",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-24.png",
     "description": ""
@@ -379,9 +379,9 @@ let products = [
     "id": 35,
     "sku": "MD035",
     "name": "AJ4 26",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-26.png",
     "description": ""
@@ -390,9 +390,9 @@ let products = [
     "id": 36,
     "sku": "MD036",
     "name": "AJ4 27",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-27.png",
     "description": ""
@@ -401,9 +401,9 @@ let products = [
     "id": 37,
     "sku": "MD037",
     "name": "AJ4 29",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-29.png",
     "description": ""
@@ -412,9 +412,9 @@ let products = [
     "id": 38,
     "sku": "MD038",
     "name": "AJ4 3",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-3.png",
     "description": ""
@@ -423,9 +423,9 @@ let products = [
     "id": 39,
     "sku": "MD039",
     "name": "AJ4 33",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-33.png",
     "description": ""
@@ -434,9 +434,9 @@ let products = [
     "id": 40,
     "sku": "MD040",
     "name": "AJ4 36",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-36.png",
     "description": ""
@@ -445,9 +445,9 @@ let products = [
     "id": 41,
     "sku": "MD041",
     "name": "AJ4 4",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-4.png",
     "description": ""
@@ -456,9 +456,9 @@ let products = [
     "id": 42,
     "sku": "MD042",
     "name": "AJ4 41",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-41.png",
     "description": ""
@@ -467,9 +467,9 @@ let products = [
     "id": 43,
     "sku": "MD043",
     "name": "AJ4 48",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-48.png",
     "description": ""
@@ -478,9 +478,9 @@ let products = [
     "id": 44,
     "sku": "MD044",
     "name": "AJ4 50",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-50.png",
     "description": ""
@@ -489,9 +489,9 @@ let products = [
     "id": 45,
     "sku": "MD045",
     "name": "AJ4 52",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-52.png",
     "description": ""
@@ -500,9 +500,9 @@ let products = [
     "id": 46,
     "sku": "MD046",
     "name": "AJ4 53",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-53.png",
     "description": ""
@@ -511,9 +511,9 @@ let products = [
     "id": 47,
     "sku": "MD047",
     "name": "AJ4 54",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-54.png",
     "description": ""
@@ -522,9 +522,9 @@ let products = [
     "id": 48,
     "sku": "MD048",
     "name": "AJ4 58",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-58.png",
     "description": ""
@@ -533,9 +533,9 @@ let products = [
     "id": 49,
     "sku": "MD049",
     "name": "AJ4 6",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-6.png",
     "description": ""
@@ -544,9 +544,9 @@ let products = [
     "id": 50,
     "sku": "MD050",
     "name": "AJ4 7",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-7.png",
     "description": ""
@@ -555,14 +555,18 @@ let products = [
     "id": 51,
     "sku": "MD051",
     "name": "AJ4 8",
-    "price": 1000,
+    "price": 1,
     "currency": "ZAR",
-    "display_price": "R 1000.00",
+    "display_price": "R 1.00",
     "category": "Air Jordan",
     "image": "images/airjordan/AJ4-8.png",
     "description": ""
   }
 ];
+
+// Normalize embedded/fallback product prices to 1 ZAR so hardcoded 1000 values
+// don't appear in the UI. products.json (if present) will overwrite this.
+products = products.map(p => ({ ...p, price: 1, display_price: 'R 1.00' }));
 
 // Small helper to format prices consistently
 function formatPrice(v) {
@@ -792,3 +796,26 @@ window.addEventListener('resize', function () {
     document.querySelectorAll('.nav-toggle[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
   }
 });
+
+// Ensure displayed prices on product cards reflect runtime product data
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    const products = window.__products || [];
+    // For product cards that have an addToCart(button) call we can extract the product id from the onclick
+    document.querySelectorAll('button[onclick^="addToCart("]').forEach(btn => {
+      const onclick = btn.getAttribute('onclick') || '';
+      const m = onclick.match(/addToCart\((\d+),/);
+      if (!m) return;
+      const id = Number(m[1]);
+      const p = products.find(x => Number(x.id) === id);
+      if (!p) return;
+      const card = btn.closest('.card');
+      if (!card) return;
+      const priceEl = card.querySelector('.price');
+      if (priceEl) priceEl.textContent = formatPrice(Number(p.price) || 0);
+    });
+  } catch (e) {
+    console.warn('Price sync failed:', e);
+  }
+});
+

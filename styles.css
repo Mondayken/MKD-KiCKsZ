@@ -20,6 +20,11 @@ body {
   padding: 0;
 }
 
+/* Prevent horizontal scrolling on small screens and when zoomed */
+html, body {
+  overflow-x: hidden;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -214,12 +219,13 @@ select.size {
 /* Reusable two-column layout for cart/checkout pages */
 .two-column {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  /* make the right column flexible so it can shrink when viewport is narrow or zoomed */
+  grid-template-columns: 1fr minmax(240px, 320px);
   gap: 18px;
 }
 
 .two-column.two-column-checkout {
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr minmax(280px, 420px);
 }
 
 .footer {
