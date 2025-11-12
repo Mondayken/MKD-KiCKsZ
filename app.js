@@ -722,3 +722,21 @@ function renderCart() {
   `;
   updateCartBadge();
 }
+
+// --- Mobile nav toggle ---
+document.addEventListener('click', function (ev) {
+  const toggle = ev.target.closest && ev.target.closest('.nav-toggle');
+  if (!toggle) return;
+  const header = toggle.closest('.header');
+  if (!header) return;
+  const isOpen = header.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+// Close mobile nav when clicking outside or when resizing to desktop
+window.addEventListener('resize', function () {
+  if (window.innerWidth > 720) {
+    document.querySelectorAll('.header.open').forEach(h => h.classList.remove('open'));
+    document.querySelectorAll('.nav-toggle[aria-expanded="true"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+  }
+});

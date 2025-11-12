@@ -2,16 +2,37 @@
 <html>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact Us - MKD K!CKsZ</title><link rel="stylesheet" href="styles.css"></head>
 <body>
-<header class="header"><div class="logo">MKD K!CKsZ</div></header>
-<main class="container">
+<header class="header">
+  <div class="logo">MKD K!CKsZ</div>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="nike.html">Nike</a> |
+    <a href="airjordan.html">Air Jordan</a> |
+    <a href="cart.html">Cart<span id="cart-badge" class="cart-badge"></span></a> |
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main class="container contact-page">
   <h2>Contact Us</h2>
-  <p>Have questions or need help? Reach out to us!</p>
-  <form id="contact-form" style="max-width:600px;margin:0 auto;">
-    <div><input name="fullname" placeholder="Full name" required style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
-    <div><input name="email" type="email" placeholder="Email" required style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff"></div>
-    <div><textarea name="message" placeholder="Your message" required rows="5" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;background:#0f0f0f;border:1px solid rgba(255,255,255,0.03);color:#fff;resize:vertical;"></textarea></div>
-    <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
-  </form>
+  <p>Have questions or need help? Reach out to us — we're happy to help with orders, sizing or stock.</p>
+  <div class="contact-card">
+    <form id="contact-form" class="contact-form">
+      <input name="fullname" placeholder="Full name" required type="text">
+      <input name="email" type="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Your message" required rows="5"></textarea>
+      <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+    </form>
+  </div>
+  <section class="contact-info">
+    <h3>Other ways to reach us</h3>
+    <ul>
+      <li><strong>Email</strong> <a class="btn btn-secondary" href="mailto:mondayken15@gmail.com">mondayken15@gmail.com</a></li>
+      <li><strong>WhatsApp</strong> <a class="btn btn-secondary" href="https://wa.me/27658556054" target="_blank" rel="noopener">0658556054</a> <span class="small">(Click to open chat)</span></li>
+      <li><strong>Instagram</strong> <a class="btn btn-secondary" href="https://instagram.com/monday_k3n" target="_blank" rel="noopener">@monday_k3n</a></li>
+      <li><strong>TikTok</strong> <a class="btn btn-secondary" href="https://www.tiktok.com/@monday.ken" target="_blank" rel="noopener">@monday.ken</a></li>
+    </ul>
+  </section>
   <div id="contact-result" style="margin-top:16px;"></div>
 </main>
 <script src="app.js"></script>
