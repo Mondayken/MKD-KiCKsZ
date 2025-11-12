@@ -12,3 +12,4 @@
 - [x] Fixed addToCart IDs in nike.html to match products.json IDs
 - [x] Fixed addToCart IDs in airjordan.html to match products.json IDs
 - [x] Implemented size selection for cart items (cart now stores product ID and size as key)
+- [x] Embedded products data directly in app.js to avoid fetch issues
