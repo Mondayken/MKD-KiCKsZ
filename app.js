@@ -827,6 +827,23 @@ function renderCart() {
       <button class="btn btn-danger" onclick="clearCart()" style="margin-top:10px;">Clear Cart</button>
     </div>
   `;
+  // Defensive: remove any stray text nodes or injected comment text that might
+  // have been left in the summary by earlier experiments or cached scripts.
+  try {
+    const walker = document.createTreeWalker(summaryContainer, NodeFilter.SHOW_TEXT, null, false);
+    const suspicious = /Size picker|Transform existing|Size picker enhancement|\/\/ ---|try \{|\{\s*\/\//i;
+    const toRemove = [];
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!node || !node.nodeValue) continue;
+      const txt = node.nodeValue.trim();
+      if (!txt) continue;
+      if (suspicious.test(txt) || txt.length > 200) {
+        toRemove.push(node);
+      }
+    }
+    toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
+  } catch (e) { /* ignore cleanup errors */ }
   updateCartBadge();
 }
 
