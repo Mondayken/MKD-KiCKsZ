@@ -565,8 +565,8 @@ const products = [
 
 window.__products = products;
 
-// Auto-render cart if we are on cart.html
-if (window.location.pathname.includes("cart.html")) {
+// Auto-render cart if cart container exists (more robust than pathname check)
+if (document.getElementById("cart-items")) {
   renderCart();
 }
 // Update badge on page load
@@ -597,6 +597,8 @@ function addToCart(id, size) {
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
   cart[cartKey] = (cart[cartKey] || 0) + 1;
   localStorage.setItem("cart", JSON.stringify(cart));
+  // Debug: log current cart to help diagnose client issues
+  try { console.log('cart after add:', JSON.parse(localStorage.getItem('cart') || '{}')); } catch(e) {}
   const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
   showNotification(`✅ Added to cart! You now have ${totalItems} item${totalItems !== 1 ? 's' : ''} in your cart.`);
   updateCartBadge();
@@ -616,6 +618,26 @@ function showNotification(message) {
   setTimeout(() => {
     notification.style.display = 'none';
   }, 3000);
+}
+
+// Optional: small on-page debug overlay (only enabled when DEBUG_CART=true in URL)
+if (window.location.search.includes('DEBUG_CART=true')) {
+  const dbg = document.createElement('div');
+  dbg.className = 'cart-debug';
+  dbg.id = 'cart-debug';
+  document.body.appendChild(dbg);
+  const updateDbg = () => {
+    try {
+      const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+      dbg.textContent = 'Cart: ' + JSON.stringify(cart);
+      dbg.style.display = 'block';
+    } catch(e) { dbg.style.display = 'none'; }
+  };
+  // update on add / storage events
+  window.addEventListener('storage', updateDbg);
+  const oldAdd = addToCart;
+  window.addToCart = function(id, size) { oldAdd(id, size); setTimeout(updateDbg, 80); };
+  setTimeout(updateDbg, 80);
 }
 
 // --- Update Quantity function ---
@@ -673,6 +695,9 @@ function renderCart() {
   const summaryContainer = document.getElementById("cart-summary");
   if (!cartContainer) return;
 
+  // Debug: show cart contents when opening cart page
+  try { console.log('renderCart - stored cart:', JSON.parse(localStorage.getItem('cart') || '{}')); } catch(e) {}
+
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
   const products = window.__products || [];
 
@@ -722,6 +747,14 @@ function renderCart() {
   `;
   updateCartBadge();
 }
+
+// Listen for storage changes (other tabs) and update badge/cart view
+window.addEventListener('storage', function(e) {
+  if (e.key === 'cart' || e.key === null) {
+    updateCartBadge();
+    if (document.getElementById('cart-items')) renderCart();
+  }
+});
 
 // --- Mobile nav toggle ---
 document.addEventListener('click', function (ev) {

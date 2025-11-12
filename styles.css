@@ -235,6 +235,22 @@ select.size {
   word-wrap: break-word;
 }
 
+/* Small debug overlay to display cart contents during testing */
+.cart-debug {
+  position: fixed;
+  bottom: 80px;
+  left: 18px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  z-index: 1200;
+  max-width: 320px;
+  display: none;
+  word-wrap: break-word;
+}
+
 /* Contact page styles */
 .contact-page p {
   color: var(--muted);
