@@ -803,19 +803,23 @@ function renderCart() {
     total += subtotal;
 
     cartContainer.innerHTML += `
-      <div class="card" style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-        <img src="${p.image}" alt="${p.name}" style="width:80px;height:80px;object-fit:cover;border-radius:6px;">
-        <div style="flex:1;">
-          <strong>${p.name}</strong><br>
-          <span>Size: ${size}</span><br>
-          <span>Price: ${formatPrice(priceNum)}</span><br>
-          <span>Subtotal: ${formatPrice(subtotal)}</span>
+      <div class="card cart-item" style="display:flex;flex-direction:column;gap:12px;margin-bottom:10px;padding:12px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <img src="${p.image}" alt="${p.name}" style="width:80px;height:80px;object-fit:contain;border-radius:6px;flex-shrink:0;">
+          <div style="flex:1;min-width:0;">
+            <strong style="display:block;margin-bottom:4px;">${p.name}</strong>
+            <span style="display:block;margin-bottom:2px;">Size: ${size}</span>
+            <span style="display:block;margin-bottom:2px;">Price: ${formatPrice(priceNum)}</span>
+            <span style="display:block;">Subtotal: ${formatPrice(subtotal)}</span>
+          </div>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <button onclick="updateQuantity('${cartKey}', -1)" class="btn btn-secondary">-</button>
-          <span>Qty: ${qty}</span>
-          <button onclick="updateQuantity('${cartKey}', 1)" class="btn btn-secondary">+</button>
-          <button onclick="removeFromCart('${cartKey}')" class="btn btn-danger">Remove</button>
+        <div style="display:flex;align-items:center;gap:8px;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button onclick="updateQuantity('${cartKey}', -1)" class="btn btn-secondary" style="min-width:32px;">-</button>
+            <span style="min-width:20px;text-align:center;">Qty: ${qty}</span>
+            <button onclick="updateQuantity('${cartKey}', 1)" class="btn btn-secondary" style="min-width:32px;">+</button>
+          </div>
+          <button onclick="removeFromCart('${cartKey}')" class="btn btn-danger" style="flex-shrink:0;">Remove</button>
         </div>
       </div>
     `;

@@ -13,3 +13,9 @@
 - [x] Fixed addToCart IDs in airjordan.html to match products.json IDs
 - [x] Implemented size selection for cart items (cart now stores product ID and size as key)
 - [x] Embedded products data directly in app.js to avoid fetch issues
+
+## Current Task: Fix Air Jordan addToCart IDs
+- [ ] Extract Air Jordan products from products.json (IDs 23-51)
+- [ ] Generate new HTML cards for the grid using products.json details
+- [ ] Replace the existing <div class="grid"> content in airjordan.html with the new cards
+- [ ] Test adding products to cart to verify correct product is added
