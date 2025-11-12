@@ -37,7 +37,7 @@ function buildHTMLPage(title, products, category) {
         <div>${p.display_price}</div>
         <label>Size:</label>
         <select id="size-${p.id}">
-          ${["5","6","7","8","9","10","11","12"].map(s=>`<option value="${s}">${s}</option>`).join("")}
+          ${["5","5.5","6","6.5","7","7.5","8","8.5","9","9.5","10","10.5","11","11.5","12","12.5","13","13.5","14"].map(s=>`<option value="${s}">${s}</option>`).join("")}
         </select>
         <button class="btn btn-primary" onclick="addToCart(${p.id}, document.getElementById('size-${p.id}').value)">Add to cart</button>
       </div>`

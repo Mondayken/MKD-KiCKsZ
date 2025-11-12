@@ -8,41 +8,82 @@ fetch("products.json")
     if (window.location.pathname.includes("cart.html")) {
       renderCart();
     }
+    // Update badge on page load
+    updateCartBadge();
   });
+
+// --- Update Cart Badge function ---
+function updateCartBadge() {
+  const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+  const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+  const badge = document.getElementById('cart-badge');
+  if (badge) {
+    if (totalItems > 0) {
+      badge.textContent = totalItems;
+      badge.style.display = 'flex';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+}
 
 // --- Add to Cart function ---
 function addToCart(id) {
+  const sizeSelect = document.getElementById('size-' + id);
+  const size = sizeSelect ? sizeSelect.value : '';
+  const cartKey = `${id}|${size}`;
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
-  cart[id] = (cart[id] || 0) + 1;
+  cart[cartKey] = (cart[cartKey] || 0) + 1;
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert("✅ Added to cart!");
+  const totalItems = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+  showNotification(`✅ Added to cart! You now have ${totalItems} item${totalItems !== 1 ? 's' : ''} in your cart.`);
+  updateCartBadge();
+}
+
+// --- Show Notification function ---
+function showNotification(message) {
+  let notification = document.getElementById('cart-notification');
+  if (!notification) {
+    notification = document.createElement('div');
+    notification.id = 'cart-notification';
+    notification.className = 'notification';
+    document.body.appendChild(notification);
+  }
+  notification.textContent = message;
+  notification.style.display = 'block';
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 3000);
 }
 
 // --- Update Quantity function ---
-function updateQuantity(id, delta) {
+function updateQuantity(cartKey, delta) {
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
-  if (cart[id]) {
-    cart[id] += delta;
-    if (cart[id] <= 0) {
-      delete cart[id];
+  if (cart[cartKey]) {
+    cart[cartKey] += delta;
+    if (cart[cartKey] <= 0) {
+      delete cart[cartKey];
     }
   }
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
+  updateCartBadge();
 }
 
 // --- Remove from Cart function ---
-function removeFromCart(id) {
+function removeFromCart(cartKey) {
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
-  delete cart[id];
+  delete cart[cartKey];
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
+  updateCartBadge();
 }
 
 // --- Clear Cart function ---
 function clearCart() {
   localStorage.removeItem("cart");
   renderCart();
+  updateCartBadge();
 }
 
 // --- Submit Order to Server function ---
@@ -76,13 +117,15 @@ function renderCart() {
   if (Object.keys(cart).length === 0) {
     cartContainer.innerHTML = `<p>Your cart is empty 😢</p>`;
     summaryContainer.innerHTML = "";
+    updateCartBadge();
     return;
   }
 
   let total = 0;
   cartContainer.innerHTML = "";
 
-  for (const [id, qty] of Object.entries(cart)) {
+  for (const [cartKey, qty] of Object.entries(cart)) {
+    const [id, size] = cartKey.split('|');
     const p = products.find(x => x.id == id);
     if (!p) continue;
     const subtotal = p.price * qty;
@@ -93,14 +136,15 @@ function renderCart() {
         <img src="${p.image}" alt="${p.name}" style="width:80px;height:80px;object-fit:cover;border-radius:6px;">
         <div style="flex:1;">
           <strong>${p.name}</strong><br>
+          <span>Size: ${size}</span><br>
           <span>Price: R ${p.price}</span><br>
           <span>Subtotal: R ${subtotal}</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button onclick="updateQuantity(${id}, -1)" class="btn btn-secondary">-</button>
+          <button onclick="updateQuantity('${cartKey}', -1)" class="btn btn-secondary">-</button>
           <span>Qty: ${qty}</span>
-          <button onclick="updateQuantity(${id}, 1)" class="btn btn-secondary">+</button>
-          <button onclick="removeFromCart(${id})" class="btn btn-danger">Remove</button>
+          <button onclick="updateQuantity('${cartKey}', 1)" class="btn btn-secondary">+</button>
+          <button onclick="removeFromCart('${cartKey}')" class="btn btn-danger">Remove</button>
         </div>
       </div>
     `;
@@ -114,4 +158,5 @@ function renderCart() {
       <button class="btn btn-danger" onclick="clearCart()" style="margin-top:10px;">Clear Cart</button>
     </div>
   `;
+  updateCartBadge();
 }

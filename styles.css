@@ -215,6 +215,46 @@ select.size {
   font-size: 13px;
 }
 
+/* Notification Styles */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, var(--accent-pink), var(--accent-red));
+  color: #111;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  z-index: 1000;
+  display: none;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  background: var(--accent-red);
+  color: #fff;
+  border-radius: 50%;
+  min-width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: bold;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+nav a {
+  position: relative;
+}
+
 @media (max-width: 720px) {
   .hero {
     flex-direction: column;

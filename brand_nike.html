@@ -1,29 +1,263 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Nike - MKD K!CKsZ</title><link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nike</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="header"><div class="logo">MKD K!CKsZ</div><nav><a href="index.html">Home</a> | <a href="cart.html">Cart (<span id="cart-count">0</span>)</a></nav></header>
-<main class="container"><h2>Nike Collection</h2><div id="products" class="grid"></div></main>
-<script src="app.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', async ()=>{
-  const data = await fetch('products.json').then(r=>r.json());
-  const list = Object.values(data).flat();
-  const nike = list.filter(p=>p.category.toLowerCase().includes('nike'));
-  const c = document.getElementById('products');
-  c.innerHTML='';
-  nike.forEach(p=>{
-    const div = document.createElement('div'); div.className='card';
-    const img = p.image && p.image.trim()? p.image : `images/nike/${p.sku.toLowerCase()}.png`;
-    div.innerHTML = `<img src="${img}"><div class="title-small">SKU: ${p.sku} • PK: ${p.id}</div><h3>${p.name}</h3><div class="price">${p.display_price || 'R '+(p.price).toFixed(2)}</div>
-      <div class="controls"><select class="size" id="size-${p.id}">${Array.from({length:14},(_,i)=>36+i).map(s=>`<option value="${s}">${s}</option>`).join('')}</select>
-      <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to cart</button></div>`;
-    c.appendChild(div);
-  });
-});
-</script>
+  <header class="header">
+    <div class="logo">MKD K!CKsZ</div>
+    <nav>
+      <a href="index.html">Home</a> | <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h2>Nike</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images/nike/AF1.jpeg" alt="AF1">
+        <h3>AF1</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-1">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(1, document.getElementById('size-1').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-01.jpeg" alt="TN 01">
+        <h3>TN 01</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-2">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(2, document.getElementById('size-2').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-02.jpeg" alt="TN 02">
+        <h3>TN 02</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-3">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(3, document.getElementById('size-3').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-03.jpeg" alt="TN 03">
+        <h3>TN 03</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-4">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(4, document.getElementById('size-4').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-04.jpeg" alt="TN 04">
+        <h3>TN 04</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-5">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(5, document.getElementById('size-5').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-05.jpeg" alt="TN 05">
+        <h3>TN 05</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-6">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(6, document.getElementById('size-6').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-06.jpeg" alt="TN 06">
+        <h3>TN 06</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-7">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(7, document.getElementById('size-7').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-07.jpeg" alt="TN 07">
+        <h3>TN 07</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-8">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(8, document.getElementById('size-8').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-08.jpeg" alt="TN 08">
+        <h3>TN 08</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-9">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(9, document.getElementById('size-9').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-09.jpeg" alt="TN 09">
+        <h3>TN 09</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-10">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(10, document.getElementById('size-10').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-10.jpeg" alt="TN 10">
+        <h3>TN 10</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-11">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(11, document.getElementById('size-11').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-11.jpeg" alt="TN 11">
+        <h3>TN 11</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-12">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(12, document.getElementById('size-12').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-12.jpeg" alt="TN 12">
+        <h3>TN 12</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-13">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(13, document.getElementById('size-13').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-14.jpeg" alt="TN 14">
+        <h3>TN 14</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-14">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(14, document.getElementById('size-14').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-15.jpeg" alt="TN 15">
+        <h3>TN 15</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-15">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(15, document.getElementById('size-15').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-16.jpeg" alt="TN 16">
+        <h3>TN 16</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-16">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(16, document.getElementById('size-16').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-17.jpeg" alt="TN 17">
+        <h3>TN 17</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-17">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(17, document.getElementById('size-17').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-18.jpeg" alt="TN 18">
+        <h3>TN 18</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-18">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(18, document.getElementById('size-18').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-19.jpeg" alt="TN 19">
+        <h3>TN 19</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-19">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(19, document.getElementById('size-19').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-A01.jpeg" alt="TN A01">
+        <h3>TN A01</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-20">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(20, document.getElementById('size-20').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-A02.jpeg" alt="TN A02">
+        <h3>TN A02</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-21">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(21, document.getElementById('size-21').value)">Add to cart</button>
+      </div>
+
+      <div class="card">
+        <img src="images/nike/TN-A03.jpeg" alt="TN A03">
+        <h3>TN A03</h3>
+        <div>R 1000.00</div>
+        <label>Size:</label>
+        <select id="size-22">
+          <option value="5">5</option><option value="5.5">5.5</option><option value="6">6</option><option value="6.5">6.5</option><option value="7">7</option><option value="7.5">7.5</option><option value="8">8</option><option value="8.5">8.5</option><option value="9">9</option><option value="9.5">9.5</option><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option>
+        </select>
+        <button class="btn btn-primary" onclick="addToCart(22, document.getElementById('size-22').value)">Add to cart</button>
+      </div></div>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>
