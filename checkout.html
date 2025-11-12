@@ -92,19 +92,34 @@ function payWithPayfast() {
   const cancelUrl = window.location.origin + '/checkout.html?status=cancel';
   const notifyUrl = window.location.origin + '/.netlify/functions/orders'; // For IPN if needed
 
-  const payfastUrl = 'https://www.payfast.co.za/eng/process?' +
-    'merchant_id=' + encodeURIComponent(merchantId) +
-    '&merchant_key=' + encodeURIComponent(merchantKey) +
-    '&return_url=' + encodeURIComponent(returnUrl) +
-    '&cancel_url=' + encodeURIComponent(cancelUrl) +
-    '&notify_url=' + encodeURIComponent(notifyUrl) +
-    '&amount=' + encodeURIComponent(total.toFixed(2)) +
-    '&item_name=' + encodeURIComponent('MKD K!CKsZ Order') +
-    '&email_address=' + encodeURIComponent(document.querySelector('[name="email"]').value) +
-    '&name_first=' + encodeURIComponent(document.querySelector('[name="fullname"]').value.split(' ')[0]) +
-    '&name_last=' + encodeURIComponent(document.querySelector('[name="fullname"]').value.split(' ').slice(1).join(' '));
+  // Use server-side function to build Payfast redirect (hides merchant_key)
+  const payload = {
+    items,
+    total,
+    returnUrl,
+    cancelUrl,
+    notifyUrl,
+    customer: {
+      email: document.querySelector('[name="email"]').value,
+      fullname: document.querySelector('[name="fullname"]').value
+    },
+    item_name: 'MKD K!CKsZ Order'
+  };
 
-  window.location.href = payfastUrl;
+  fetch('/.netlify/functions/payfast', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(r => r.json()).then(res => {
+    if (res && res.url) {
+      window.location.href = res.url;
+    } else {
+      alert('Payfast redirect failed. Please try again later.');
+    }
+  }).catch(err => {
+    console.error('Payfast error', err);
+    alert('Payfast error. Check console for details.');
+  });
 }
 </script>
 </body>
