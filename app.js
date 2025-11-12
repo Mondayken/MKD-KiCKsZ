@@ -589,6 +589,10 @@ function updateCartBadge() {
 
 // --- Add to Cart function ---
 function addToCart(id, size) {
+  if (!size || size === "") {
+    showNotification("Please select a size before adding to cart.");
+    return;
+  }
   const cartKey = `${id}|${size}`;
   const cart = JSON.parse(localStorage.getItem("cart") || "{}");
   cart[cartKey] = (cart[cartKey] || 0) + 1;
