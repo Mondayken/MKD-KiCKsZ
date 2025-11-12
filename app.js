@@ -588,6 +588,40 @@ fetch('products.json').then(r => r.json()).then(data => {
 }).catch(() => { /* ignore fetch errors and keep embedded products */ });
 
 // Auto-render cart if cart container exists (more robust than pathname check)
+// Sanitize any malformed cart data left in localStorage (fixes stray text from earlier experiments)
+function sanitizeCartOnLoad() {
+  const raw = localStorage.getItem('cart');
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') {
+      // completely invalid data — remove it
+      console.warn('sanitizeCartOnLoad: cart was not an object, clearing');
+      localStorage.removeItem('cart');
+      return;
+    }
+    const cleaned = {};
+    let removed = false;
+    for (const [k, v] of Object.entries(parsed)) {
+      // only accept keys like "<numericId>|<size>" and positive numeric qty
+      if (/^\d+\|[^\n\r]+$/.test(k) && Number.isFinite(Number(v)) && Number(v) > 0) {
+        cleaned[k] = Number(v);
+      } else {
+        removed = true;
+        console.warn('sanitizeCartOnLoad: removing invalid cart key', k);
+      }
+    }
+    if (removed) localStorage.setItem('cart', JSON.stringify(cleaned));
+  } catch (e) {
+    // malformed JSON — remove the cart to be safe
+    console.warn('sanitizeCartOnLoad: failed to parse cart JSON, clearing cart', e);
+    localStorage.removeItem('cart');
+  }
+}
+
+sanitizeCartOnLoad();
+
+// Auto-render cart if cart container exists (more robust than pathname check)
 if (document.getElementById("cart-items")) {
   renderCart();
 }
