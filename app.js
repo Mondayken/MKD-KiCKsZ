@@ -751,6 +751,17 @@ function clearCart() {
   updateCartBadge();
 }
 
+// Force-clear cart: remove cart data and reload the page to ensure any cached
+// or injected content is fully removed. This is intended as a last-resort user
+// visible action for non-technical visitors.
+function forceClearCart() {
+  if (!confirm('This will permanently clear your cart for this browser. Continue?')) return;
+  try { localStorage.removeItem('cart'); } catch (e) { /* ignore */ }
+  updateCartBadge();
+  // reload to ensure any cached scripts or UI are refreshed
+  location.reload();
+}
+
 // --- Submit Order to Server function ---
 async function submitOrderToServer(data) {
   try {
@@ -824,7 +835,10 @@ function renderCart() {
       <h3>Cart Summary</h3>
       <p>Total: <strong>${formatPrice(total)}</strong></p>
       <button class="btn btn-primary" onclick="window.location.href='checkout.html'">Checkout</button>
-      <button class="btn btn-danger" onclick="clearCart()" style="margin-top:10px;">Clear Cart</button>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-direction:column;">
+        <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+        <button class="btn btn-secondary" onclick="forceClearCart()">Force Clear Cart</button>
+      </div>
     </div>
   `;
   // Defensive: remove any stray text nodes or injected comment text that might
