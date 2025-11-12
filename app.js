@@ -835,29 +835,54 @@ function renderCart() {
       <h3>Cart Summary</h3>
       <p>Total: <strong>${formatPrice(total)}</strong></p>
       <button class="btn btn-primary" onclick="window.location.href='checkout.html'">Checkout</button>
-      <div style="margin-top:10px;display:flex;gap:8px;flex-direction:column;">
+      <div id="cart-summary-actions" style="margin-top:10px;display:flex;gap:8px;flex-direction:column;">
         <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
         <button class="btn btn-secondary" onclick="forceClearCart()">Force Clear Cart</button>
       </div>
     </div>
   `;
-  // Defensive: remove any stray text nodes or injected comment text that might
-  // have been left in the summary by earlier experiments or cached scripts.
+  // Defensive cleanup: remove any unexpected <select> or stray nodes inside the
+  // summary (these were introduced during the size-picker experiments in some
+  // browsers). Also ensure action buttons exist.
   try {
+    // remove selects that don't belong in summary
+    summaryContainer.querySelectorAll('select, .size-select, .size-picker').forEach(el => el.remove());
+    // remove suspicious text nodes left inside summary
     const walker = document.createTreeWalker(summaryContainer, NodeFilter.SHOW_TEXT, null, false);
-    const suspicious = /Size picker|Transform existing|Size picker enhancement|\/\/ ---|try \{|\{\s*\/\//i;
+    const suspicious = /Size picker|Transform existing|Size picker enhancement|\/\/ ---|try \{/i;
     const toRemove = [];
     let node;
     while ((node = walker.nextNode())) {
       if (!node || !node.nodeValue) continue;
       const txt = node.nodeValue.trim();
       if (!txt) continue;
-      if (suspicious.test(txt) || txt.length > 200) {
-        toRemove.push(node);
-      }
+      if (suspicious.test(txt) || txt.length > 200) toRemove.push(node);
     }
     toRemove.forEach(n => n.parentNode && n.parentNode.removeChild(n));
-  } catch (e) { /* ignore cleanup errors */ }
+
+    // Ensure action container and buttons exist (in case some nodes were removed)
+    let actions = document.getElementById('cart-summary-actions');
+    if (!actions) {
+      actions = document.createElement('div');
+      actions.id = 'cart-summary-actions';
+      actions.style.marginTop = '10px';
+      actions.style.display = 'flex';
+      actions.style.gap = '8px';
+      actions.style.flexDirection = 'column';
+      const clearBtn = document.createElement('button');
+      clearBtn.className = 'btn btn-danger';
+      clearBtn.textContent = 'Clear Cart';
+      clearBtn.onclick = clearCart;
+      const forceBtn = document.createElement('button');
+      forceBtn.className = 'btn btn-secondary';
+      forceBtn.textContent = 'Force Clear Cart';
+      forceBtn.onclick = forceClearCart;
+      actions.appendChild(clearBtn);
+      actions.appendChild(forceBtn);
+      const card = summaryContainer.querySelector('.card') || summaryContainer;
+      card.appendChild(actions);
+    }
+  } catch (e) { console.warn('summary cleanup failed', e); }
   updateCartBadge();
 }
 
