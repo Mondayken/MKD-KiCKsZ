@@ -564,9 +564,9 @@ let products = [
   }
 ];
 
-// Normalize embedded/fallback product prices to 1 ZAR so hardcoded 1000 values
+// Normalize embedded/fallback product prices to 1000 ZAR so hardcoded 1000 values
 // don't appear in the UI. products.json (if present) will overwrite this.
-products = products.map(p => ({ ...p, price: 1, display_price: 'R 1.00' }));
+products = products.map(p => ({ ...p, price: 1000, display_price: 'R 1000.00' }));
 
 // Small helper to format prices consistently
 function formatPrice(v) {
