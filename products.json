@@ -244,7 +244,7 @@
   {
     "id": 23,
     "sku": "MD023",
-    "name": "AJ4 1",
+    "name": "Air Jordan 1",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -255,7 +255,7 @@
   {
     "id": 24,
     "sku": "MD024",
-    "name": "AJ4 10",
+    "name": "Air Jordan 10",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -266,7 +266,7 @@
   {
     "id": 25,
     "sku": "MD025",
-    "name": "AJ4 11",
+    "name": "Air Jordan 11",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -277,7 +277,7 @@
   {
     "id": 26,
     "sku": "MD026",
-    "name": "AJ4 12",
+    "name": "Air Jordan 12",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -288,7 +288,7 @@
   {
     "id": 27,
     "sku": "MD027",
-    "name": "AJ4 14",
+    "name": "Air Jordan 14",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -299,7 +299,7 @@
   {
     "id": 28,
     "sku": "MD028",
-    "name": "AJ4 15",
+    "name": "Air Jordan 15",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -310,7 +310,7 @@
   {
     "id": 29,
     "sku": "MD029",
-    "name": "AJ4 17",
+    "name": "Air Jordan 17",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -321,7 +321,7 @@
   {
     "id": 30,
     "sku": "MD030",
-    "name": "AJ4 18",
+    "name": "Air Jordan 18",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -332,7 +332,7 @@
   {
     "id": 31,
     "sku": "MD031",
-    "name": "AJ4 2",
+    "name": "Air Jordan 2",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -343,7 +343,7 @@
   {
     "id": 32,
     "sku": "MD032",
-    "name": "AJ4 21",
+    "name": "Air Jordan 21",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -354,7 +354,7 @@
   {
     "id": 33,
     "sku": "MD033",
-    "name": "AJ4 23",
+    "name": "Air Jordan 23",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -365,7 +365,7 @@
   {
     "id": 34,
     "sku": "MD034",
-    "name": "AJ4 24",
+    "name": "Air Jordan 24",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -376,7 +376,7 @@
   {
     "id": 35,
     "sku": "MD035",
-    "name": "AJ4 26",
+    "name": "Air Jordan 26",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -387,7 +387,7 @@
   {
     "id": 36,
     "sku": "MD036",
-    "name": "AJ4 27",
+    "name": "Air Jordan 27",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -398,7 +398,7 @@
   {
     "id": 37,
     "sku": "MD037",
-    "name": "AJ4 29",
+    "name": "Air Jordan 29",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -409,7 +409,7 @@
   {
     "id": 38,
     "sku": "MD038",
-    "name": "AJ4 3",
+    "name": "Air Jordan 3",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -420,7 +420,7 @@
   {
     "id": 39,
     "sku": "MD039",
-    "name": "AJ4 33",
+    "name": "Air Jordan 33",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -431,7 +431,7 @@
   {
     "id": 40,
     "sku": "MD040",
-    "name": "AJ4 36",
+    "name": "Air Jordan 36",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -442,7 +442,7 @@
   {
     "id": 41,
     "sku": "MD041",
-    "name": "AJ4 4",
+    "name": "Air Jordan 4",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -453,7 +453,7 @@
   {
     "id": 42,
     "sku": "MD042",
-    "name": "AJ4 41",
+    "name": "Air Jordan 41",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -464,7 +464,7 @@
   {
     "id": 43,
     "sku": "MD043",
-    "name": "AJ4 48",
+    "name": "Air Jordan 48",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -475,7 +475,7 @@
   {
     "id": 44,
     "sku": "MD044",
-    "name": "AJ4 50",
+    "name": "Air Jordan 50",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -486,7 +486,7 @@
   {
     "id": 45,
     "sku": "MD045",
-    "name": "AJ4 52",
+    "name": "Air Jordan 52",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -497,7 +497,7 @@
   {
     "id": 46,
     "sku": "MD046",
-    "name": "AJ4 53",
+    "name": "Air Jordan 53",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -508,7 +508,7 @@
   {
     "id": 47,
     "sku": "MD047",
-    "name": "AJ4 54",
+    "name": "Air Jordan 54",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -519,7 +519,7 @@
   {
     "id": 48,
     "sku": "MD048",
-    "name": "AJ4 58",
+    "name": "Air Jordan 58",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -530,7 +530,7 @@
   {
     "id": 49,
     "sku": "MD049",
-    "name": "AJ4 6",
+    "name": "Air Jordan 6",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -541,7 +541,7 @@
   {
     "id": 50,
     "sku": "MD050",
-    "name": "AJ4 7",
+    "name": "Air Jordan 7",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",
@@ -552,7 +552,7 @@
   {
     "id": 51,
     "sku": "MD051",
-    "name": "AJ4 8",
+    "name": "Air Jordan 8",
     "price": 1000,
     "currency": "ZAR",
     "display_price": "R 1000.00",

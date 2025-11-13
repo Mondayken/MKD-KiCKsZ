@@ -21,8 +21,12 @@ function generateSKU(prefix, index) {
   return prefix.toUpperCase() + num;
 }
 
-function getDisplayName(filename) {
+function getDisplayName(filename, category) {
   const base = path.parse(filename).name;
+  if (category === 'Air Jordan') {
+    const num = base.replace(/AJ4-/i, '');
+    return `Air Jordan ${num}`;
+  }
   const clean = base.replace(/[_-]+/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
   return clean;
 }
@@ -79,7 +83,8 @@ async function main() {
     const files = fs.readdirSync(folder).filter((f) => /\.(png|jpg|jpeg)$/i.test(f));
     for (const file of files) {
       const sku = generateSKU(cat === "nike" ? "FC" : "MD", id);
-      const name = getDisplayName(file);
+      const categoryName = cat === "nike" ? "Nike" : "Air Jordan";
+      const name = getDisplayName(file, categoryName);
       const image = `images/${cat}/${file}`;
 
       products.push({
