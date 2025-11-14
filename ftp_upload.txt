@@ -1,5 +1,0 @@
-open ftpupload.net
-user if0_40412319 MKDaVinci15
-binary
-put site.zip
-quit
