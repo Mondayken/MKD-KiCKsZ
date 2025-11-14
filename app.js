@@ -920,6 +920,18 @@ function updateDisplayedPrices() {
       const priceEl = card.querySelector('.price');
       if (priceEl) priceEl.textContent = formatPrice(Number(p.price) || 0);
     });
+    // Update prices for home page preview cards (no addToCart buttons, match by image src)
+    document.querySelectorAll('.card img').forEach(img => {
+      const src = img.getAttribute('src');
+      if (!src) return;
+      const normalizedSrc = src.replace(/\\/g, '/');
+      const p = products.find(x => x.image === normalizedSrc);
+      if (!p) return;
+      const card = img.closest('.card');
+      if (!card) return;
+      const priceEl = card.querySelector('.price');
+      if (priceEl) priceEl.textContent = formatPrice(Number(p.price) || 0);
+    });
   } catch (e) {
     console.warn('Price sync failed:', e);
   }
