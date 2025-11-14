@@ -584,6 +584,8 @@ fetch('products.json').then(r => r.json()).then(data => {
     // re-render cart and badge in case prices changed
     updateCartBadge();
     if (document.getElementById('cart-items')) renderCart();
+    // Update displayed prices on product cards to reflect the loaded data
+    updateDisplayedPrices();
   }
 }).catch(() => { /* ignore fetch errors and keep embedded products */ });
 
@@ -901,8 +903,8 @@ window.addEventListener('resize', function () {
   }
 });
 
-// Ensure displayed prices on product cards reflect runtime product data
-document.addEventListener('DOMContentLoaded', function () {
+// Function to update displayed prices on product cards
+function updateDisplayedPrices() {
   try {
     const products = window.__products || [];
     // For product cards that have an addToCart(button) call we can extract the product id from the onclick
@@ -921,5 +923,10 @@ document.addEventListener('DOMContentLoaded', function () {
   } catch (e) {
     console.warn('Price sync failed:', e);
   }
+}
+
+// Ensure displayed prices on product cards reflect runtime product data
+document.addEventListener('DOMContentLoaded', function () {
+  updateDisplayedPrices();
 });
 
