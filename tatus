@@ -1,0 +1,37 @@
+* [33m31ee248[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Initial commit
+* [33m522fee2[m Initial commit
+* [33me2f9f4c[m Update updateDisplayedPrices to handle home page preview cards
+* [33m53013db[m Fix hardcoded prices on home page and Air Jordan page
+* [33m689c449[m Update display prices to '5 rand' or '10 rands'
+* [33mda0473f[m Randomize product prices to R5 or R10
+* [33md794038[m Remove unnecessary development and deployment files
+* [33macab1c4[m Update product prices randomly to 5 or 10 ZAR
+* [33m9fc7f76[m Update product prices to 1000 ZAR and regenerate site
+* [33md2c0c30[m Add Payfast environment variables for sandbox testing
+* [33me5ec09f[m Fix product names: Air Jordan as 'Air Jordan [number]', Nike as original names
+* [33m2eef207[m Update all product prices to 1000 ZAR in HTML files and ensure consistency
+* [33m2b51a54[m Update all product prices to 1000 ZAR and ensure cart compatibility
+* [33meb5121e[m Update product prices to 1 ZAR
+* [33m05685ca[m Update website files
+* [33m1909dc7[m Remove Force Clear Cart button from cart summary
+* [33maba452e[m Ensure Clear/Force Clear buttons exist; remove unexpected selects and stray text nodes from summary
+* [33m99be55e[m Inline cart sanitizer in cart.html to purge malformed/injected cart keys before cached JS runs
+* [33mf993883[m Add forceClearCart() and expose Force Clear Cart button in cart summary
+* [33m9413cba[m Cleanup: remove stray text nodes after render + cache-bust app.js with current hash
+* [33m3e280e3[m Tighten sanitizeCartOnLoad: validate id, size token, and qty; remove malformed entries
+* [33m7d011e4[m Sanitize cart on load to remove malformed localStorage entries
+* [33m6f1011e[m Normalize product prices to R 1.00 (runtime + files) and update generators
+* [33m5428199[m Add Payfast server function, IPN logging and client update; add whitelist instructions
+* [33m484a7f4[m Set all product prices to R1 (no cents) per request
+* [33mc2a7a97[m Fix: use products.json at runtime, format prices, responsive cart/checkout, contact icons
+* [33m2644dfa[m Fix: make cart render robust, add storage listener + debug logs
+* [33m55ea8e1[m Site updates: contact details, About Us, responsive header and mobile menu
+* [33me499f88[m Add contact us page
+* [33m4c121d6[m Add size selection check in addToCart to prevent adding without size
+* [33mae74b0d[m Embed products data directly in app.js to avoid fetch issues
+* [33m0dcf8ed[m Fix addToCart function to accept size parameter directly
+* [33me4bd9a8[m Fix size select IDs in nike.html and airjordan.html to use sequential IDs and update onclick to pass size
+* [33md0d1fdd[m Update website with latest changes
+* [33m7fbcc89[m Initial commit
+* [33m6b7319f[m chore: add @sendgrid/mail dependency for Netlify function
+* [33m24e99bf[m Initial commit
