@@ -1,21 +1,46 @@
-# Domain Change to Free Subdomain (No-IP)
+# TODO - Thorough Testing and Deployment on Vercel
 
-## Pending Tasks
-- [ ] Register a free hostname on No-IP (e.g., mkdkicksz.ddns.net)
-- [ ] Add the domain to Vercel site settings as a custom domain
-- [ ] Configure DNS on No-IP: Set CNAME record pointing to your Vercel site (e.g., mkdkicksz.vercel.app)
-- [ ] Verify the site loads on the new domain
-- [x] Update README.txt with new domain info
-- [ ] Test payment integrations (Payfast uses dynamic origin, so should work)
+## 1. Prepare for Deployment
+- Install Vercel CLI globally: `npm install -g vercel`
+- Deploy the project from the root folder using `vercel` command.
+- Verify deployment completes successfully and obtain the live URL.
 
-## Additional Fixes
-- [x] Fixed addToCart IDs in nike.html to match products.json IDs
-- [x] Fixed addToCart IDs in airjordan.html to match products.json IDs
-- [x] Implemented size selection for cart items (cart now stores product ID and size as key)
-- [x] Embedded products data directly in app.js to avoid fetch issues
+## 2. Thorough Testing of Deployed Website
 
-## Current Task: Fix Air Jordan addToCart IDs
-- [x] Extract Air Jordan products from products.json (IDs 23-51)
-- [x] Generate new HTML cards for the grid using products.json details
-- [x] Replace the existing <div class="grid"> content in airjordan.html with the new cards
-- [x] Test adding products to cart to verify correct product is added
+### Static Pages Testing (HTML, CSS, JS, Images)
+- Test all HTML pages including:
+  - index.html
+  - brand_nike.html
+  - brand_aj.html
+  - nike.html
+  - cart.html
+  - checkout.html
+  - contact.html
+  - airjordan.html
+- Verify CSS (styles.css) and JS files load and function properly.
+- Verify all images under images/ folder render correctly in their respective pages.
+- Test navigation and user interactions on each page.
+
+### API Endpoints Testing (Serverless Functions)
+- Test every API endpoint in the api/ folder:
+  - api/orders.js
+  - api/payfast.js
+- Validate expected responses for each endpoint.
+- Test edge cases, error handling, and incorrect inputs.
+
+### Other Functional Testing
+- Test dynamic scripts like:
+  - generate_airjordan_html.js
+  - updateHTMLPrices.js
+  - updatePrices.js
+- Confirm their expected functionality or effect on the deployed site.
+
+## 3. Report Issues and Fixes
+- Document any bugs, loading errors, or performance problems during testing.
+- Address issues with code updates and re-deploy as necessary.
+
+---
+
+Once this TODO is complete, deployment and testing will be finished.
+
+Please confirm if you want me to proceed with generating the deployment guidance instructions and help with the testing steps.
