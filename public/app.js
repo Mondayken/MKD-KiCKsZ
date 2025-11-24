@@ -797,7 +797,7 @@ function renderCart() {
     <div class="card" style="padding:16px">
       <h3>Cart Summary</h3>
       <p>Total: <strong>${formatPrice(total)}</strong></p>
-      <button class="btn btn-primary" onclick="window.location.href='checkout.html'">Checkout</button>
+      <button class="btn btn-primary" style="padding: 14px 24px; font-size: 1.1em;" onclick="window.location.href='checkout.html'">Checkout</button>
       <div id="cart-summary-actions" style="margin-top:10px;display:flex;gap:8px;flex-direction:column;">
         <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
       </div>
