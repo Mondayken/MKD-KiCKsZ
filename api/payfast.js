@@ -16,16 +16,17 @@ module.exports = async function (req, res) {
     return;
   }
 
-  const merchantId = process.env.PAYFAST_MERCHANT_ID;
-  const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
-  const sandbox = (process.env.PAYFAST_SANDBOX || 'false').toLowerCase() === 'true';
+const merchantId = process.env.PAYFAST_MERCHANT_ID;
+const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
 
-  if (!merchantId || !merchantKey) {
-    res.status(500).send('Payfast not configured');
-    return;
-  }
+// Removed sandbox mode usage as this is for testing only:
 
-  const endpoint = sandbox ? 'https://sandbox.payfast.co.za/eng/process' : 'https://www.payfast.co.za/eng/process';
+if (!merchantId || !merchantKey) {
+  res.status(500).send('Payfast not configured');
+  return;
+}
+
+const endpoint = 'https://www.payfast.co.za/eng/process';
 
   const total = Number(payload.total || 0) || 0;
   const returnUrl = payload.returnUrl || '';
