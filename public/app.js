@@ -909,3 +909,21 @@ document.addEventListener('DOMContentLoaded', function () {
   updateDisplayedPrices();
 });
 
+...
+// --- Start of Yoco payment integration skeleton ---
+
+// Placeholder public key for Yoco. Replace with your actual Yoco public key
+// Removed duplicate redeclarations of yocoPublicKey and initializeYoco
+// Ensure only one declaration exists above (keep only the first one)
+
+
+// --- Start of Paysharp payment integration skeleton ---
+
+// Placeholder client key for Paysharp. Replace with your actual Paysharp public client key.
+
+
+let yoco;
+
+=======
+let yoco;
+

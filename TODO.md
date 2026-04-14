@@ -1,46 +1,28 @@
-# TODO - Thorough Testing and Deployment on Vercel
+# TODO - Capitec Pay Integration and Checkout Updates
 
-## 1. Prepare for Deployment
-- Install Vercel CLI globally: `npm install -g vercel`
-- Deploy the project from the root folder using `vercel` command.
-- Verify deployment completes successfully and obtain the live URL.
+## Research
+- Research Capitec Pay integration options, official docs, APIs, and best practices for ecommerce websites.
 
-## 2. Thorough Testing of Deployed Website
+## Frontend Changes
+- Remove PayPal payment option from checkout page.
+- Add Capitec Pay payment option UI (radio button, payment button) alongside PayFast.
 
-### Static Pages Testing (HTML, CSS, JS, Images)
-- Test all HTML pages including:
-  - index.html
-  - brand_nike.html
-  - brand_aj.html
-  - nike.html
-  - cart.html
-  - checkout.html
-  - contact.html
-  - airjordan.html
-- Verify CSS (styles.css) and JS files load and function properly.
-- Verify all images under images/ folder render correctly in their respective pages.
-- Test navigation and user interactions on each page.
+## Backend Changes
+- Create new serverless API endpoint (api/capitecpay.js) to initiate Capitec Pay payment session and generate redirect URL or payment token.
+- Use environment variables for Capitec Pay API credentials.
+- Implement basic stub for Capitec Pay backend to allow testing if real credentials/API not provided.
 
-### API Endpoints Testing (Serverless Functions)
-- Test every API endpoint in the api/ folder:
-  - api/orders.js
-  - api/payfast.js
-- Validate expected responses for each endpoint.
-- Test edge cases, error handling, and incorrect inputs.
+## Testing
+- Test checkout flow end-to-end with PayFast and Capitec Pay options.
+- Verify form validation, payment redirect, and order confirmation.
+- Test backend API endpoints handling payments and webhooks.
 
-### Other Functional Testing
-- Test dynamic scripts like:
-  - generate_airjordan_html.js
-  - updateHTMLPrices.js
-  - updatePrices.js
-- Confirm their expected functionality or effect on the deployed site.
+## Documentation & Summary
+- Provide summary and comparison of Capitec Pay, PayFast, and PayPal payment options.
+- Document setup instructions for environment variables and payment providers.
 
-## 3. Report Issues and Fixes
-- Document any bugs, loading errors, or performance problems during testing.
-- Address issues with code updates and re-deploy as necessary.
-
----
-
-Once this TODO is complete, deployment and testing will be finished.
-
-Please confirm if you want me to proceed with generating the deployment guidance instructions and help with the testing steps.
+## Next Steps
+- Begin with Capitec Pay research and confirm approach.
+- Update frontend checkout page UI.
+- Implement backend stub and API.
+- Deploy and test incremental changes.

@@ -5,6 +5,20 @@
 <header class="header"><div class="logo">MKD K!CKsZ</div></header>
 <main class="container">
   <h2>Checkout</h2>
+  <style>
+  @media (max-width: 600px) {
+    .two-column-checkout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #order-summary.checkout-panel {
+      order: -1;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+  }
+</style>
   <div class="two-column two-column-checkout">
     <div>
       <form id="checkout-form">
@@ -17,18 +31,24 @@
     </div>
     <div id="order-summary" class="checkout-panel"></div>
   </div>
-  <!-- Payment method selection UI -->
-  <div style="margin-bottom: 10px;">
-    <label><input type="radio" name="payment-method" value="paypal" checked> PayPal</label>
-    <label style="margin-left: 20px;"><input type="radio" name="payment-method" value="payfast"> PayFast</label>
-  </div>
+  <!-- Remove PayPal payment UI -->
+  <!--<div id="paypal-button-container" style="margin-top:14px"></div>-->
 
-  <div id="paypal-button-container" style="margin-top:14px"></div>
-  <div id="payfast-button-container" style="margin-top:14px; display:none;"></div>
+  <!-- PayFast payment UI -->
+  <div id="payfast-button-container" style="margin-top:14px;"></div>
+
+  <!-- Yoco payment UI -->
+  <div id="yoco-button-container" style="margin-top:14px;"></div>
+
+  <!-- Paysharp payment UI -->
+  <div id="paysharp-button-container" style="margin-top:14px;"></div>
+
+  <!-- Capitec Pay payment UI -->
+  <!-- <div id="capitecpay-button-container" style="margin-top:14px;"></div> -->
 </main>
 
 <!-- PayPal SDK: client-id provided earlier -->
-<script src="https://www.paypal.com/sdk/js?client-id=Abx8JdunQM6Fn0bQ7OqaM5ijZn3v6p8A4BbyIe1Zi4oOZAD0dgdfoVN6pv6EKl7wYWsPRodEJJoM7fUA&currency=ZAR"></script>
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=Abx8JdunQM6Fn0bQ7OqaM5ijZn3v6p8A4BbyIe1Zi4oOZAD0dgdfoVN6pv6EKl7wYWsPRodEJJoM7fUA&currency=ZAR"></script> -->
 <script src="app.js?v=3e280e3"></script>
 <script>
 // Render order summary on checkout page
@@ -84,73 +104,15 @@ function renderCheckout() {
 document.addEventListener('DOMContentLoaded', renderCheckout);
 window.renderCheckout = renderCheckout;
 
-// Render PayPal button and call our submitOrderToServer (uses app.js's function)
-paypal.Buttons({
-  createOrder: function(data, actions) {
-    // Only create order if PayPal is selected
-    const method = document.querySelector('input[name="payment-method"]:checked').value;
-    if (method !== 'paypal') return Promise.reject('PayPal not selected');
-
-    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-    const products = window.__products || [];
-    const items = Object.entries(cart).map(([cartKey, qty]) => {
-      const [id,size] = cartKey.split('|');
-      const p = products.find(x=>x.id==id);
-      return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: Number(p.price) || 0, size } : null;
-    }).filter(Boolean);
-    const subtotal = items.reduce((s,i)=>s + (Number(i.price) || 0) * i.qty, 0);
-    return actions.order.create({
-      purchase_units: [{ amount: { value: subtotal.toFixed(2), currency_code: 'ZAR' } }]
-    });
-  },
-  onApprove: function(data, actions) {
-    // Only handle approval if PayPal is selected
-    const method = document.querySelector('input[name="payment-method"]:checked').value;
-    if (method !== 'paypal') return;
-
-    return actions.order.capture().then(function(details) {
-      const cartObj = JSON.parse(localStorage.getItem('cart') || '{}');
-      const products = window.__products || [];
-      const items = Object.entries(cartObj).map(([cartKey, qty]) => {
-        const [id,size] = cartKey.split('|');
-        const p = products.find(x=>x.id==id);
-        return p ? { sku:p.sku, pk:p.id, name:p.name, qty, price: Number(p.price) || 0, size } : null;
-      }).filter(Boolean);
-      const order = { id:'PP-'+(details.id||Date.now()), paypal:details, items, total: items.reduce((s,i)=>s + (Number(i.price)||0)*i.qty,0), createdAt:new Date().toISOString() };
-      const customer = {
-        fullname: document.querySelector('[name="fullname"]').value,
-        email: document.querySelector('[name="email"]').value,
-        address: document.querySelector('[name="address"]').value,
-        city: document.querySelector('[name="city"]').value,
-        postal: document.querySelector('[name="postal"]').value
-      };
-      document.getElementById('order-result').innerHTML = '<div class="order-success"><h3>Payment completed</h3><div>Transaction ID: '+details.id+'</div></div>';
-      // clear cart
-      localStorage.removeItem('cart');
-      window.__cart = {};
-      updateCartBadge();
-      // post to serverless orders (if configured)
-      submitOrderToServer({ order, customer, items }).then(res=>{ console.log('order saved',res); }).catch(e=>{ console.warn('order not saved to serverless', e); });
-    });
-  },
-  onError: function(err) {
-    document.getElementById('order-result').innerHTML = '<div class="card"><div class="small">Payment error: '+err+'</div></div>';
-  }
-}).render('#paypal-button-container');
 
 
+document.getElementById('payfast-button-container').innerHTML = '<button class="btn btn-primary" style="padding: 14px 48px; font-size: 1.2em; width: 100%;" onclick="payWithPayfast()">Pay with Payfast</button>';
 
-// Payfast integration (placeholder, as Payfast typically uses redirect)
-document.getElementById('payfast-button-container').innerHTML = '<button class="btn btn-primary" onclick="payWithPayfast()">Pay with Payfast</button>';
+/* Stub: Capitec Pay integration button and flow placeholder
+document.getElementById('capitecpay-button-container').innerHTML = '<button class="btn btn-warning" style="padding: 14px 48px; font-size: 1.2em; width: 100%;" onclick="payWithCapitec()">Pay with Capitec Pay</button>';
+*/
 
 function payWithPayfast() {
-  // Only run if PayFast is selected
-  const method = document.querySelector('input[name="payment-method"]:checked').value;
-  if (method !== 'payfast') {
-    alert('Please select PayFast as payment method to proceed.');
-    return;
-  }
-
   const cart = JSON.parse(localStorage.getItem('cart') || '{}');
   const products = window.__products || [];
   const items = Object.entries(cart).map(([cartKey, qty]) => {
@@ -195,6 +157,50 @@ function payWithPayfast() {
     alert('Payfast error. Check console for details.');
   });
 }
+
+
+/*function payWithCapitec() {
+  const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+  const products = window.__products || [];
+  const items = Object.entries(cart).map(([cartKey, qty]) => {
+    const [id, size] = cartKey.split('|');
+    const p = products.find(x => x.id == id);
+    return p ? { sku: p.sku, pk: p.id, name: p.name, qty, price: Number(p.price) || 0, size } : null;
+  }).filter(Boolean);
+  const total = items.reduce((s, i) => s + (Number(i.price) || 0) * i.qty, 0);
+
+  const returnUrl = window.location.origin + '/checkout.html?status=success';
+  const cancelUrl = window.location.origin + '/checkout.html?status=cancel';
+  const notifyUrl = window.location.origin + '/api/orders'; // For IPN if needed
+
+  const payload = {
+    items,
+    total,
+    returnUrl,
+    cancelUrl,
+    notifyUrl,
+    customer: {
+      email: document.querySelector('[name="email"]').value,
+      fullname: document.querySelector('[name="fullname"]').value
+    },
+    item_name: 'MKD K!CKsZ Order'
+  };
+
+  fetch('/api/capitecpay', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(r => r.json()).then(res => {
+    if (res && res.url) {
+      window.location.href = res.url;
+    } else {
+      alert('Capitec Pay redirect failed. Please try again later.');
+    }
+  }).catch(err => {
+    console.error('Capitec Pay error', err);
+    alert('Capitec Pay error. Check console for details.');
+  });
+}*/
 </script>
 </body>
 </html>

@@ -16,8 +16,8 @@ module.exports = async function (req, res) {
     return;
   }
 
-const merchantId = process.env.PAYFAST_MERCHANT_ID;
-const merchantKey = process.env.PAYFAST_MERCHANT_KEY;
+const merchantId = process.env.PAYFAST_MERCHANT_ID || '21821367';
+const merchantKey = process.env.PAYFAST_MERCHANT_KEY || 'e1zoza9igff2q';
 
 // Removed sandbox mode usage as this is for testing only:
 
@@ -49,7 +49,7 @@ const endpoint = 'https://www.payfast.co.za/eng/process';
   const url = endpoint + '?' + qs;
 
   const remoteIp = req.headers['x-forwarded-for'] || req.headers['X-Forwarded-For'] || 'unknown';
-  console.log('Built Payfast redirect for', remoteIp, 'sandbox=', sandbox, 'amount=', params.amount);
+  console.log('Built Payfast redirect for', remoteIp, 'amount=', params.amount);
 
   res.status(200).json({ url });
 };
